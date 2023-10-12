@@ -15,6 +15,8 @@ describe('Issue time tracking', () => {
         cy.get('input[name="title"]').type(title);
         cy.get('button[type="submit"]').click()
       })
+
+//Creat new Issue.
       cy.get('[data-testid="modal:issue-create"]').should('not.exist');
       cy.contains('Issue has been successfully created.').should('be.visible');
       cy.reload();
@@ -47,6 +49,9 @@ describe('Issue time tracking', () => {
       .should('be.visible')
   }
 
+//Add,Update,Remove in one issue-test.
+//Add Original Estimated time.
+//And check 
   it('Should be able to add, update and remove estimated time on issue', () => {
     IssueDetailsExist()
     cy.get('input[placeholder="Number"]').should('be.empty')
