@@ -106,3 +106,24 @@ describe('Issue create', () => {
       //Assert that correct type icon is visible
       cy.get('[data-testid="icon:task"]').should('be.visible');
     });
+  });
+
+
+  //Sprint #2, Bonus assignment Task 3
+  const title = ' Hello world! '; // Define the issue title with extra spaces
+
+  it('Check that the application is removing unnecessary spaces on the board view', () => {
+    // Create an issue with the specified title and a short summary
+    cy.createIssue(title, 'Short summary of the issue');
+
+    // Look for the created issue within the backlog by its title text (trimmed)
+    cy.get('[data-testid="board-list:backlog"]').within(() => {
+      // Use .invoke('text') to get the text content and trim it
+      cy.contains(title.trim()).invoke('text').then((trimmedText) => {
+        // Assert that the trimmed title text exists on the board view
+        cy.contains(trimmedText).should('exist');
+      });
+    })
+  })
+
+});
